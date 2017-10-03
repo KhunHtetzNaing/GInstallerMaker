@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <doclet-version-NOT-library-version>1.00</doclet-version-NOT-library-version>
+    <class>
+        <name>com.AB.ABZipUnzip.ABZipUnzip</name>
+        <shortname>ABZipUnzip</shortname>
+        <comment>Object that does zip en unzip files on the device</comment>
+        <owner>process</owner>
+        <permission>android.permission.WRITE_EXTERNAL_STORAGE</permission>
+        <method>
+            <name>ABUnzip</name>
+            <comment>Unzip a zip file 
+  
+  Example:&lt;code&gt;
+  myZip.ABUnzip(sdRoot &amp; "myZip.zip", sdRoot &amp; "target")
+  &lt;/code&gt;</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>zipFile</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>targetPath</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>ABListZip</name>
+            <comment>List the contents of a zip file
+  
+  Example:&lt;code&gt;
+  Dim myZipFile as ABZipContent 
+  
+  listview1.Clear
+  counter = myzip.ABListZip(sdRoot &amp; "myZipOneFile.zip")
+  For a = 0 To counter - 1
+	   myZipFile = myZip.ABGetListItem(a)
+	   listview1.AddTwoLines(myZipfile.Name, "Size: " &amp; MyZipfile.Size &amp; " bytes   Compressed Size: " &amp; myzipFile.CompressedSize &amp; " bytes")
+  Next
+  &lt;/code&gt;</comment>
+            <returntype>int</returntype>
+            <parameter>
+                <name>zipFile</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>ABGetListItem</name>
+            <comment>Get one if the items in the zipfile to get more information. Fill this list first by calling ABListZip()</comment>
+            <returntype>com.AB.ABZipUnzip.ABZipUnzip.ABZipContent</returntype>
+            <parameter>
+                <name>index</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>ABZipfile</name>
+            <comment>Zip a single file
+  
+  sourcePath must end with "/"
+  
+  Example:&lt;code&gt;
+  myzip.ABZipFile(sdRoot &amp; "start/" , "test4.txt", sdRoot &amp; "myZipOneFile.zip")
+  &lt;/code&gt;</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>sourcePath</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>sourceFile</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>zipFile</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>ABZipDirectory</name>
+            <comment>zip a folder with all its files and subdirectories
+  
+  Example:&lt;code&gt;
+  myzip.ABZipDirectory(sdRoot &amp; "start", sdRoot &amp; "myZip.zip")
+  &lt;/code&gt;</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>sourceDir</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>zipFile</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+    </class>
+    <class>
+        <name>com.AB.ABZipUnzip.ABZipUnzip.ABZipContent</name>
+        <shortname>ABZipContent</shortname>
+        <comment>An object that the contains information about an entry in the zip file</comment>
+        <owner>process</owner>
+        <property>
+            <name>Name</name>
+            <returntype>java.lang.String</returntype>
+            <comment>Returns the full path and name of the entry</comment>
+        </property>
+        <property>
+            <name>CompressedSize</name>
+            <returntype>java.lang.Long</returntype>
+            <comment>Returns the compressed size of the entry</comment>
+        </property>
+        <property>
+            <name>Size</name>
+            <returntype>java.lang.Long</returntype>
+            <comment>Returns the uncompressed size of the entry</comment>
+        </property>
+    </class>
+    <version>1.0</version>
+    <author>Alain Bailleul</author>
+</root>

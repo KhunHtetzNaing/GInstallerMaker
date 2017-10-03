@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <doclet-version-NOT-library-version>1.05</doclet-version-NOT-library-version>
+    <class>
+        <name>anywheresoftware.b4a.admobwrapper.AdViewWrapper</name>
+        <shortname>AdView</shortname>
+        <objectwrapper>com.google.android.gms.ads.AdView</objectwrapper>
+        <owner>activity</owner>
+        <event>ReceiveAd</event>
+        <event>FailedToReceiveAd (ErrorCode As String)</event>
+        <event>AdScreenDismissed</event>
+        <event>PresentScreen</event>
+        <permission>android.permission.INTERNET</permission>
+        <permission>android.permission.ACCESS_NETWORK_STATE</permission>
+        <method>
+            <name>BringToFront</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>LoadAdWithTestDevice</name>
+            <comment>Requests an ad.
+TestDevice - The test device id. You can see the id in the unfiltered logs.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>TestDevice</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>RequestFocus</name>
+            <comment></comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>RemoveView</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>SetBackgroundImage</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>android.graphics.Bitmap</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Invalidate3</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg3</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Resume</name>
+            <comment>Should be called from Activity_Resume.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>LoadAd</name>
+            <comment>Sends a request to AdMob, requesting an ad.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>Invalidate2</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>android.graphics.Rect</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Initialize2</name>
+            <comment>Initializes the AdView.
+EventName - Name of Subs that will handle the events.
+AdUnitId - The Ad unit id received from AdMob.
+Size - One of the SIZE constants.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ba</name>
+                <type>anywheresoftware.b4a.BA</type>
+            </parameter>
+            <parameter>
+                <name>EventName</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>AdUnitId</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Size</name>
+                <type>java.lang.Object</type>
+            </parameter>
+        </method>
+        <method>
+            <name>IsInitialized</name>
+            <comment></comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>Initialize</name>
+            <comment>Initializes the AdView using the default 320dip x 50dip size.
+EventName - Name of Subs that will handle the events.
+PublisherId - The publisher id you received from AdMob.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ba</name>
+                <type>anywheresoftware.b4a.BA</type>
+            </parameter>
+            <parameter>
+                <name>EventName</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>PublisherId</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Invalidate</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>SetLayout</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg3</name>
+                <type Pixel="true">int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SetColorAnimated</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Pause</name>
+            <comment>Should be called from Activity_Pause.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>SetLayoutAnimated</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg3</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg4</name>
+                <type Pixel="true">int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SetVisibleAnimated</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type>boolean</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SendToBack</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <property>
+            <name>Enabled</name>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>boolean</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Parent</name>
+            <returntype>java.lang.Object</returntype>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Top</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Visible</name>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>boolean</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Tag</name>
+            <returntype>java.lang.Object</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>java.lang.Object</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Height</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Background</name>
+            <returntype>android.graphics.drawable.Drawable</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>android.graphics.drawable.Drawable</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Width</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Left</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Color</name>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <field>
+            <name>SIZE_IAB_MRECT</name>
+            <comment>300dip x 250dip - tablet only</comment>
+            <returntype>java.lang.Object</returntype>
+        </field>
+        <field>
+            <name>SIZE_IAB_LEADERBOARD</name>
+            <comment>728dip x 90dip - tablet only</comment>
+            <returntype>java.lang.Object</returntype>
+        </field>
+        <field>
+            <name>SIZE_SMART_BANNER</name>
+            <comment>Ad will use the full available width automatically.
+You can use this code to add such an ad to the bottom of the screen:
+&lt;code&gt;
+Adview1.Initialize2("Ad", "xxxxxxxx", AdView1.SIZE_SMART_BANNER)
+Dim height As Int
+If GetDeviceLayoutValues.ApproximateScreenSize &lt; 6 Then
+    'phones
+    If 100%x &gt; 100%y Then height = 32dip Else height = 50dip
+Else
+    'tablets
+    height = 90dip
+End If
+Activity.AddView(AdView1, 0dip, 100%y - height, 100%x, height)&lt;/code&gt;</comment>
+            <returntype>java.lang.Object</returntype>
+        </field>
+        <field>
+            <name>SIZE_BANNER</name>
+            <comment>320dip x 50dip (default size)</comment>
+            <returntype>java.lang.Object</returntype>
+        </field>
+        <field>
+            <name>SIZE_IAB_BANNER</name>
+            <comment>468dip x 60dip - tablet only</comment>
+            <returntype>java.lang.Object</returntype>
+        </field>
+    </class>
+    <class>
+        <name>anywheresoftware.b4a.admobwrapper.AdViewWrapper.NativeExpressAdWrapper</name>
+        <shortname>NativeExpressAd</shortname>
+        <objectwrapper>com.google.android.gms.ads.NativeExpressAdView</objectwrapper>
+        <owner>activity</owner>
+        <permission>android.permission.INTERNET</permission>
+        <permission>android.permission.ACCESS_NETWORK_STATE</permission>
+        <method>
+            <name>BringToFront</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>LoadAdWithTestDevice</name>
+            <comment>Requests an ad.
+TestDevice - The test device id. You can see the id in the unfiltered logs.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>TestDevice</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>RequestFocus</name>
+            <comment></comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>RemoveView</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>SetBackgroundImage</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>android.graphics.Bitmap</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Invalidate3</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg3</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Resume</name>
+            <comment>Should be called from Activity_Resume.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>LoadAd</name>
+            <comment>Sends a request to AdMob, requesting an ad.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>Invalidate2</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>android.graphics.Rect</type>
+            </parameter>
+        </method>
+        <method>
+            <name>IsInitialized</name>
+            <comment></comment>
+            <returntype>boolean</returntype>
+        </method>
+        <method>
+            <name>Initialize</name>
+            <comment>Initializes the ad view.
+EventName - Sets the subs that will handle the events.
+AdUnitId - Ad unit ID of a native ad.
+Width - Requested ad width.
+Height - Requested ad height.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ba</name>
+                <type>anywheresoftware.b4a.BA</type>
+            </parameter>
+            <parameter>
+                <name>EventName</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>AdUnitId</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Width</name>
+                <type>float</type>
+            </parameter>
+            <parameter>
+                <name>Height</name>
+                <type>float</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Invalidate</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>SetLayout</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg3</name>
+                <type Pixel="true">int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SetColorAnimated</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type>int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Pause</name>
+            <comment>Should be called from Activity_Pause.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>SetLayoutAnimated</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg2</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg3</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <parameter>
+                <name>arg4</name>
+                <type Pixel="true">int</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SetVisibleAnimated</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <parameter>
+                <name>arg1</name>
+                <type>boolean</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SendToBack</name>
+            <comment></comment>
+            <returntype>void</returntype>
+        </method>
+        <property>
+            <name>Enabled</name>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>boolean</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Parent</name>
+            <returntype>java.lang.Object</returntype>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Top</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Visible</name>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>boolean</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Tag</name>
+            <returntype>java.lang.Object</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>java.lang.Object</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Height</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Background</name>
+            <returntype>android.graphics.drawable.Drawable</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type>android.graphics.drawable.Drawable</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Width</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Left</name>
+            <returntype>int</returntype>
+            <parameter>
+                <name>arg0</name>
+                <type Pixel="true">int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+        <property>
+            <name>Color</name>
+            <parameter>
+                <name>arg0</name>
+                <type>int</type>
+            </parameter>
+            <comment></comment>
+        </property>
+    </class>
+    <class>
+        <name>anywheresoftware.b4a.admobwrapper.AdViewWrapper.InterstitialAdWrapper</name>
+        <shortname>InterstitialAd</shortname>
+        <comment>Interstitial ads are full screen ads.
+The following events are raised:
+ReceiveAd - An ad is ready to be shown.
+FailedToReceiveAd
+AdOpened - The ad has become visible.
+AdClosed - The user has closed the ad.
+AdLeftApplication - The user has clicked on the ad.
+Example of both types of ads using test ids:
+&lt;code&gt;
+Sub Process_Globals
+
+End Sub
+
+Sub Globals
+	Private BannerAd As AdView
+	Private IAd As InterstitialAd
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("1")
+	BannerAd.Initialize2("BannerAd", "ca-app-pub-3940256099942544/6300978111", BannerAd.SIZE_SMART_BANNER)
+	Dim height As Int
+	If GetDeviceLayoutValues.ApproximateScreenSize &lt; 6 Then
+	    'phones
+	    If 100%x &gt; 100%y Then height = 32dip Else height = 50dip
+	Else
+	    'tablets
+	    height = 90dip
+	End If
+	Activity.AddView(BannerAd, 0dip, 100%y - height, 100%x, height)
+	BannerAd.LoadAd
+	IAd.Initialize("iad", "ca-app-pub-3940256099942544/1033173712")
+End Sub
+
+Sub Activity_Resume
+	IAd.LoadAd
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Activity_Click
+	If IAd.Ready Then IAd.Show Else IAd.LoadAd
+End Sub&lt;/code&gt;</comment>
+        <objectwrapper>com.google.android.gms.ads.InterstitialAd</objectwrapper>
+        <owner>activity</owner>
+        <event>ReceiveAd</event>
+        <event>FailedToReceiveAd (ErrorCode As String)</event>
+        <event>AdClosed</event>
+        <event>AdOpened</event>
+        <event>AdLeftApplication</event>
+        <method>
+            <name>Initialize</name>
+            <comment>Initializes the object.
+EventName - Set the subs that will handle the events.
+AdUnitId - The ad unit id. Test id: ca-app-pub-3940256099942544/1033173712</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ba</name>
+                <type>anywheresoftware.b4a.BA</type>
+            </parameter>
+            <parameter>
+                <name>EventName</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>AdUnitId</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>LoadAd</name>
+            <comment>Requests an ad. The ReceiveAd or FailedToReceiveAd events will be raised.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>Show</name>
+            <comment>Shows the loaded ad.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>IsInitialized</name>
+            <comment></comment>
+            <returntype>boolean</returntype>
+        </method>
+        <property>
+            <name>Ready</name>
+            <returntype>boolean</returntype>
+            <comment>Tests whether there is an ad ready to be shown.</comment>
+        </property>
+    </class>
+    <class>
+        <name>anywheresoftware.b4a.admobwrapper.AdViewWrapper.RewardedVideoAdWrapper</name>
+        <shortname>RewardedVideoAd</shortname>
+        <comment>A video ad where the user is rewarded if it is watched fully. The Rewarded event will be raised in that case.
+Note that AdMob does not serve these ads directly. You need to use the mediation feature to add an ad network that supports this type of ads.</comment>
+        <objectwrapper>com.google.android.gms.ads.reward.RewardedVideoAd</objectwrapper>
+        <owner>activity</owner>
+        <event>ReceiveAd</event>
+        <event>FailedToReceiveAd (ErrorCode As String)</event>
+        <event>AdClosed</event>
+        <event>AdOpened</event>
+        <event>AdLeftApplication</event>
+        <event>Rewarded (Item As Object)</event>
+        <method>
+            <name>Initialize</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>ba</name>
+                <type>anywheresoftware.b4a.BA</type>
+            </parameter>
+            <parameter>
+                <name>EventName</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>LoadAd</name>
+            <comment>Requests an ad. The ReceiveAd or FailedToReceiveAd events will be raised.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>AdUnitId</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Show</name>
+            <comment>Shows the loaded ad.</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>IsInitialized</name>
+            <comment></comment>
+            <returntype>boolean</returntype>
+        </method>
+        <property>
+            <name>Ready</name>
+            <returntype>boolean</returntype>
+            <comment>Tests whether there is an ad ready to be shown.</comment>
+        </property>
+    </class>
+    <version>1.31</version>
+    <dependsOn>com.google.firebase:firebase-ads</dependsOn>
+</root>

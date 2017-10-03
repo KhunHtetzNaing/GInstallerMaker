@@ -1,0 +1,333 @@
+﻿Version=7.01
+NumberOfModules=1
+Module1=Starter
+Build1=Default,com.htetznaing.ginstallermk
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~'************ Google Play Services Base ************~\n~AddApplicationText(~\n~   <activity android:name="com.google.android.gms.common.api.GoogleApiActivity"~\n~  android:theme="@android:style/Theme.Translucent.NoTitleBar"~\n~  android:exported="false"/>~\n~    <meta-data~\n~  android:name="com.google.android.gms.version"~\n~  android:value="@integer/google_play_services_version" />~\n~)~\n~~\n~'************ Google Play Services Base (end) ************~\n~~\n~'************ Firebase Ads ************~\n~AddApplicationText(~\n~  <activity~\n~  android:name="com.google.android.gms.ads.AdActivity"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"~\n~  android:theme="@android:style/Theme.Translucent" />~\n~  <activity android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"~\n~  android:theme="@style/Theme.IAPTheme"/>~\n~)~\n~'************ Firebase Ads (end) ************
+IconFile=
+NumberOfFiles=1
+File1=htetznaing.apk
+NumberOfLibraries=7
+Library1=core
+Library2=abzipunzip
+Library3=phone
+Library4=nnlpackagechanger
+Library5=nnlzipsigner
+Library6=mlfiles
+Library7=firebaseadmob
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: GInstaller Maker
+	#VersionCode: 1
+	#VersionName: 1.0
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+	#AdditionalJar: zipsigner-lib-1.17.jar
+	#AdditionalJar: zipio-lib-1.8.jar
+	#AdditionalJar: kellinwood-logging-lib-1.1.jar
+	#AdditionalJar: axml.jar
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+Dim T As Timer
+Dim cAPK,cIcon,cObb,cData As ContentChooser
+End Sub
+
+Sub Globals
+Dim edName,edDevName As EditText
+Dim b1,b2,b3,b4,b5 As Button
+	Dim lb As Label
+	Dim apk,tempFolder As String
+	Dim zip As ABZipUnzip
+	Dim zs As NNLZipSigner
+	Dim ml As MLfiles
+	Dim B As AdView
+	Dim I As InterstitialAd
+	Dim h As Int
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	
+	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+		If 100%x > 100%y Then h = 32dip Else h = 50dip
+	Else
+		h = 90dip
+	End If
+	
+	'Banner ADs
+	B.Initialize2("B","ca-app-pub-4173348573252986/4361816156",B.SIZE_SMART_BANNER)
+	Activity.AddView(B, 0dip, 100%y - h, 100%x, h)
+	B.LoadAd
+	Log(B)
+	
+	'Interstitial Ads
+	I.Initialize("I","ca-app-pub-4173348573252986/8792015757")
+	I.LoadAd
+	If I.Ready = False Then
+		I.LoadAd
+	End If
+	
+	T.Initialize("T",5000)
+	T.Enabled=False
+	zs.Initialize
+	apk = "htetznaing.apk"
+	tempFolder = ".HtetzGInstallerMaker"
+	If File.Exists(File.DirRootExternal&"/"&tempFolder,apk)  = False Then
+		File.Copy(File.DirAssets,apk,File.DirRootExternal,"htetz.zip")
+		zip.ABUnzip(File.DirRootExternal&"/htetz.zip",File.DirRootExternal & "/"&tempFolder)
+		File.Delete(File.DirRootExternal,"htetz.zip")
+	End If
+	
+	cAPK.Initialize("cAPK")
+	cIcon.Initialize("cIcon")
+	cObb.Initialize("cObb")
+	cData.Initialize("cData")
+	
+edName.Initialize("edName")
+edName.Hint = "Enter App Name"
+Activity.AddView(edName,5%x,1%y,80%x,10%y)
+
+b1.Initialize("b1")
+b1.Text = "Choose Icon + Image"
+Activity.AddView(b1,20%x,edName.Height+edName.Top+1%y,60%x,10%y)
+
+b2.Initialize("b2")
+b2.Text = "Game APK"
+Activity.AddView(b2,20%x,b1.Height+b1.Top+1%y,60%x,10%y)
+
+b3.Initialize("b3")
+b3.Text="obb Zip File"
+Activity.AddView(b3,20%x,b2.Height+b2.Top+1%y,60%x,10%y)
+
+b4.Initialize("b4")
+b4.Text = "data Zip File"
+Activity.AddView(b4,20%x,b3.Height+b3.Top+1%y,60%x,10%y)
+
+edDevName.Initialize("edDevName")
+edDevName.Hint = "Enter Creator/Powered By Name"
+Activity.AddView(edDevName,5%x,b4.Height+b4.Top+1%y,90%x,10%y)
+
+b5.Initialize("b5")
+b5.Text = "Create Game Installer APK"
+	Activity.AddView(b5,5%x,edDevName.Top+edDevName.Height+1%y,90%x,10%y)
+
+	lb.Initialize("lb")
+	lb.Text="Developed By Khun Htetz Naing"
+	lb.Gravity = Gravity.CENTER
+	lb.Typeface = Typeface.DEFAULT_BOLD
+	Activity.AddView(lb,0%x,b5.Height+b5.Top+2%y,100%x,10%y)
+End Sub
+
+Sub b1_Click
+	If I.Ready Then I.Show Else I.LoadAd
+	cIcon.Show("image/*","Choose Image")
+End Sub
+
+Sub cIcon_Result (Success As Boolean, Dir As String, FileName As String)
+	If Success Then
+			File.Delete(File.DirRootExternal & "/"&tempFolder&"/res/drawable", "icon.png")
+			File.Copy(Dir, FileName, File.DirRootExternal  & "/"&tempFolder&"/res/drawable", "icon.png")
+			
+		     File.Delete(File.DirRootExternal & "/"&tempFolder&"/assets", "icon.png")
+		File.Copy(Dir, FileName,File.DirRootExternal & "/"&tempFolder&"/assets", "icon.png")
+		
+			If File.Exists(File.DirRootExternal&"/"&tempFolder&"/res/drawable", "icon.png") Then
+				ToastMessageShow("Image Saved!!",False)
+			End If
+	End If
+End Sub
+
+Sub b2_Click
+	If I.Ready Then I.Show Else I.LoadAd
+	cAPK.Show("*/*","Choose Game APK")
+End Sub
+
+Sub cAPK_Result (Success As Boolean, Dir As String, FileName As String)
+	If Success Then
+		If FileName.EndsWith(".apk") Then
+
+		If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "game.apk") Then
+			File.Delete(File.DirRootExternal & "/"&tempFolder&"/assets", "game.apk")
+			End If
+			
+			File.Copy(Dir, FileName, File.DirRootExternal  & "/"&tempFolder&"/assets", "game.apk")
+		
+			If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "game.apk") Then
+				ToastMessageShow("APK Saved!!",False)
+			End If
+			Else
+				ToastMessageShow("Error! No APK File :(",True)
+		End If
+	End If
+End Sub
+
+Sub b3_Click
+	If I.Ready Then I.Show Else I.LoadAd
+	cObb.Show("*/*","Choose Game Obb!")
+End Sub
+
+Sub cObb_Result (Success As Boolean, Dir As String, FileName As String)
+	If Success Then
+		If FileName.EndsWith(".zip") Then
+
+		If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "obb.zip") Then
+			File.Delete(File.DirRootExternal & "/"&tempFolder&"/assets", "obb.zip")
+			End If
+			
+			File.Copy(Dir, FileName, File.DirRootExternal  & "/"&tempFolder&"/assets", "obb.zip")
+		
+			If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "obb.zip") Then
+				ToastMessageShow("OBB Saved!!",False)
+			End If
+			Else
+				ToastMessageShow("Error! No ZIP File :(",True)
+		End If
+	End If
+End Sub
+
+Sub b4_Click
+	If I.Ready Then I.Show Else I.LoadAd
+	cData.Show("*/*","Choose Game Obb!")
+End Sub
+
+Sub cData_Result (Success As Boolean, Dir As String, FileName As String)
+	If Success Then
+		If FileName.EndsWith(".zip") Then
+
+		If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "data.zip") Then
+			File.Delete(File.DirRootExternal & "/"&tempFolder&"/assets", "data.zip")
+			End If
+			
+			File.Copy(Dir, FileName, File.DirRootExternal  & "/"&tempFolder&"/assets", "data.zip")
+		
+			If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "data.zip") Then
+				ToastMessageShow("DATA Saved!!",False)
+			End If
+			Else
+				ToastMessageShow("Error! No ZIP File :(",True)
+	End If
+	End If
+End Sub
+
+Sub b5_Click
+	If I.Ready Then I.Show Else I.LoadAd
+	If edName.Text = "" Then
+		ToastMessageShow("Please Set App Name!",True)
+		Else
+			
+	If File.Exists(File.DirRootExternal & "/"&tempFolder&"/res/drawable", "icon.png") Then
+		
+			If File.Exists(File.DirRootExternal & "/"&tempFolder&"/assets", "game.apk") Then
+				
+				If edDevName.Text = "" Then
+					Else
+					File.WriteString(File.DirRootExternal & "/"&tempFolder&"/assets","dev.txt",edDevName.Text)
+						End If
+				ProgressDialogShow("Building Your Apk!" & CRLF & "Please Wait...")
+				T.Enabled = True
+			Else
+				ToastMessageShow("Please Choose Game APK File",True)
+			End If
+		
+		Else
+			ToastMessageShow("Please Choose Icon",True)
+			End If
+			
+	End If
+End Sub
+
+Sub T_Tick
+	Dim arg(3) As String
+	Dim pc As NNLPackageChanger
+	arg(0) = File.DirRootExternal & "/"&tempFolder&"/AndroidManifest.xml"
+	arg(1) = "com.htetznaing.ginstaller"
+	arg(2) = edName.Text
+	pc.Change(arg)
+				
+	zip.ABZipDirectory(File.DirRootExternal & "/"&tempFolder , File.DirRootExternal & "/"&edName.Text&".apk") '--------------  project_hello ကို hello.apk ျဖစ္ေအာင္ ျပန္ပိတ္မယ္။
+	zs.SignZip(File.DirRootExternal & "/"&edName.Text&".apk" , File.DirRootExternal &"/"&"SIGNED_"&edName.Text&".apk") '--------------- Sign လုပ္မယ္ New apk ကို hello_Output.apk အမည္နဲ႕ ထုတ္မယ္။
+	
+	ml.RootCmd("rm /sdcard/"&edName.Text&".apk","",Null,Null,False)
+	ml.RootCmd("rm -rf /sdcard/"&tempFolder,"",Null,Null,False)
+	ProgressDialogHide
+	ToastMessageShow ("Successfully Created " & CRLF & "SIGNED_"&edName.Text&".apk in SdCard!",True)     '---------  ပီးပီေပါ့
+	T.Enabled = False
+	Dim in As Intent
+	in.Initialize(in.ACTION_VIEW,"file:///"&File.DirRootExternal & "/"&"SIGNED_"&edName.Text&".apk")
+	in.SetType("application/vnd.android.package-archive")
+	If in.IsInitialized Then
+		StartActivity(in)
+	End If
+	T.Enabled=False
+End Sub
+
+Sub lb_Click
+	If I.Ready Then I.Show Else I.LoadAd
+	Try
+		Dim Facebook As Intent
+		Facebook.Initialize(Facebook.ACTION_VIEW, "fb://profile/100011339710114")
+		StartActivity(Facebook)
+	Catch
+		Dim Facebook As Intent
+		Facebook.Initialize(Facebook.ACTION_VIEW, "https://m.facebook.com/KHtetzNaing")
+		StartActivity(Facebook)
+	End Try
+End Sub
+
+Sub Activity_KeyPress (KeyCode As Int) As Boolean
+	Dim Answ As Int
+	If KeyCode = KeyCodes.KEYCODE_BACK Then
+		Answ = Msgbox2("Do you want to exit ? ","Attention!", "Yes", "", "No",Null)
+		If Answ = DialogResponse.POSITIVE Then
+			If I.Ready Then I.Show Else I.LoadAd
+			Return False
+			End If
+		If Answ = DialogResponse.NEGATIVE Then
+			If I.Ready Then I.Show Else I.LoadAd
+			Return True
+		End If
+		End If
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+'Banner Ads
+Sub B_FailedToReceiveAd (ErrorCode As String)
+	Log("B failed: " & ErrorCode)
+End Sub
+Sub B_ReceiveAd
+	Log("B received")
+End Sub
+
+Sub B_AdScreenDismissed
+	Log("B Dismissed")
+End Sub
+
+'Interstitial Ads
+Sub I_AdClosed
+	I.LoadAd
+End Sub
+
+Sub I_ReceiveAd
+	Log("I Received")
+End Sub
+
+Sub I_FailedToReceiveAd (ErrorCode As String)
+	Log("I not Received - " &"Error Code: "&ErrorCode)
+	I.LoadAd
+End Sub
+
+Sub I_adopened
+	Log("I Opened")
+End Sub

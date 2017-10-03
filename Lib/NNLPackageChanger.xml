@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <doclet-version-NOT-library-version>1.02</doclet-version-NOT-library-version>
+    <class>
+        <name>nnl.apktools.NNLPackageChanger</name>
+        <shortname>NNLPackageChanger</shortname>
+        <owner>process</owner>
+        <method>
+            <name>Change</name>
+            <comment></comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>args</name>
+                <type>java.lang.String[]</type>
+            </parameter>
+        </method>
+    </class>
+    <version>1.2</version>
+    <author>Nyi Nyi Lwin</author>
+</root>

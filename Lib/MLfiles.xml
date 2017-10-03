@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <doclet-version-NOT-library-version>1.02</doclet-version-NOT-library-version>
+    <class>
+        <name>MLfiles.Fileslib.MLfiles</name>
+        <shortname>MLfiles</shortname>
+        <owner>process</owner>
+        <permission>android.permission.WRITE_EXTERNAL_STORAGE</permission>
+        <method>
+            <name>GetGigsFree</name>
+            <comment>Returns the available space of the given partition/disk in gigabytes
+ 
+ Path is the partition path or directory within a partition
+ 
+Returns the available space on the partition containing the Path in gigabytes.
+ 
+ Note that some partitions are protected and will not return a value.</comment>
+            <returntype>double</returntype>
+            <parameter>
+                <name>Path</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>rm</name>
+            <comment>Remove (delete) a file or directory
+ Directories must be empty
+ 
+ Returns True on success.
+ Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Symlink</name>
+            <comment>Creates the symbolic link Linkname from Filename as in Linux/Unix.
+ Works on files or directories.
+ Returns True on success.
+  
+  Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Linkname</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Filename</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Sdcard</name>
+            <comment>Returns the path to the external SD card if present as a string including the ending / 
+ like /mnt/sdcard/
+ 
+ returns an empty string if not present</comment>
+            <returntype>java.lang.String</returntype>
+        </method>
+        <method>
+            <name>isDir</name>
+            <comment>Returns true if Path is a directory</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Path</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetFreespace</name>
+            <comment>Returns the available space of the given partition/disk as a Long
+ 
+ Path is the mount point or directory within a partition
+ 
+ Note that some partitions are protected and will not return a value.</comment>
+            <returntype>long</returntype>
+            <parameter>
+                <name>Path</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetDiskstats</name>
+            <comment>Returns information of the given partition or pathname as a string formatted as
+ 
+ Size   Used   Free   Blocksize
+ 
+ each field is separated with a single space.
+ 
+ For example:
+ 
+ [code]
+ Dim fs as MLFiles
+ Dim tmp as String
+ 
+ tmp = fs.GetDiskstats("/mnt/sdcard")
+ [/code}
+ 
+ In the example above, tmp Might return : 
+ 
+ 8G 57M 8G 4096
+ 
+ If busybox is present, the output will be in bytes for each field.
+ 
+ Uses Root if available.</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>Path</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Touch</name>
+            <comment>Creates an empty file with the current date and time.
+ 
+ Fname is the name of the file to create. If the file exists the datestamp is changed to NOW. 
+ Returns True on success.
+ 
+ Uses root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>ReadTxtFile</name>
+            <comment>Reads a text file and returns its contents in a StringBuilder.
+ Uses Root if available.</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>zipPeek</name>
+            <comment>Opens a zip file and returns the list of its contents
+ in a list.
+ 
+ zipname is the full path and filename to be displayed 
+ 
+ Returns a formatted string of :
+ 
+ path/Name, compressed FileSize, and DateTime as a single semicolon separated string</comment>
+            <returntype>java.util.ArrayList</returntype>
+            <parameter>
+                <name>zipname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>IsReadable</name>
+            <comment>Returns True if file or directory is readable to this user process.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>extractZipFilesFromDir</name>
+            <comment>Unzips zipName from fromDir to toDir</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>zipName</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>fromDir</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>toDir</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SdcardReady</name>
+            <comment>Returns a state string for the external sdcard.
+  
+ mounted = mounted and ready
+ unmounted = card present but unmounted
+ bad removal = sdcard removed without closing
+ removed = no card present
+ nofs = unformatted or unknown filesystem
+ shared = mount point is currently shared with usb device
+ unmountable = sdcard is present but damaged
+ checking = media is being scanned
+ mounted read only = sdcard is not writable</comment>
+            <returntype>java.lang.String</returntype>
+        </method>
+        <method>
+            <name>GetExtSd</name>
+            <comment>Returns the location of the external SD card mount point.
+ 
+ This is a best guess based upon the standards being adopted in later releases of Android.
+ 
+ Returns an empty string if not found.</comment>
+            <returntype>java.lang.String</returntype>
+        </method>
+        <method>
+            <name>Escape</name>
+            <comment>Escapes spaces, "(" and ")" characters in a filename
+ returns the original string if already escaped.</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>IsWritable</name>
+            <comment>Returns True if file or directory is writable to this user process.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>isSymlink</name>
+            <comment>Returns True if file or directory is a symbolic link.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>RootCmd</name>
+            <comment>Executes a system command or program through the root adapter.
+ Uses standard permissions if root is not available.
+ 
+ Command - the command to execute
+ Args - the arguments to the command
+ StdOut - the text that would appear in a linux console
+ StdErr - any error text returned by the command
+ useBB - use busybox for the command if available
+ 
+ Returns true on success.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Command</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Args</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>StdOut</name>
+                <type>java.lang.StringBuilder</type>
+            </parameter>
+            <parameter>
+                <name>StdErr</name>
+                <type>java.lang.StringBuilder</type>
+            </parameter>
+            <parameter>
+                <name>useBB</name>
+                <type>boolean</type>
+            </parameter>
+        </method>
+        <method>
+            <name>rmrf</name>
+            <comment>Remove (delete) a directory recursively.
+ ALL files and sub-directories will be deleted, EMPTY OR NOT.
+ 
+ Returns True on success.
+ Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetSymlink</name>
+            <comment>Gets the target of a symbolic link in string format.</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetFileDate</name>
+            <comment>Gets the last modified date and time of a file or directory.
+ Returns the timestamp in milliseconds.</comment>
+            <returntype>long</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetRoot</name>
+            <comment>Attempts to gain root access.
+ Sets HaveRoot to True on success</comment>
+            <returntype>void</returntype>
+        </method>
+        <method>
+            <name>cpr</name>
+            <comment>Recursive copy just like the Linux cp -r
+ Copies all files and directories under the Src path to Dest.
+ 
+ Works with directories, but is meaningless for files.
+ Returns True on success.
+ Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Src</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Dest</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>mv</name>
+            <comment>Use to move or rename files or directories from Oldname to Newname.
+ 
+ Returns True on success.
+ Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Oldname</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Newname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>WriteTxtFile</name>
+            <comment>Writes the contents of Txt to the file Fname.
+ Fname must already exist or a FileNotFound exception is thrown.
+ 
+ Uses root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Txt</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>SetFileDate</name>
+            <comment>Sets file date and time on Fname to Time in milliseconds.
+ Returns True on success.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Time</name>
+                <type>long</type>
+            </parameter>
+        </method>
+        <method>
+            <name>mkdir</name>
+            <comment>Make a directory and any needed parent directories
+ 
+ Returns True on success
+ Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Dir</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>createZipFile</name>
+            <comment>Creates a backup zip of the directory path</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>path</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>dirEntries</name>
+            <comment>Returns a list of formatted directory entries or an empty list on failure. As in :
+ 
+ d---rwxr-x system sdcard_rw 0 2011-11-13 12:59 LOST.DIR
+ 
+ Each element is in the form of a space separated string of
+ permissions and type (drwxr-xr-x) where the first char indicates a directory, link, or regular file (d, l, or -).
+ owner name
+ group name
+ file size
+ date
+ time
+ file name
+ 
+ Hidden is a boolean and will show ALL files hidden or not if True.
+ 
+ Note that this method makes every attempt to fill in a size for symlinks and directories
+ This means that you should always get 7 fields. 
+ 
+ Uses Root if available.</comment>
+            <returntype>java.util.ArrayList</returntype>
+            <parameter>
+                <name>Dir</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Hidden</name>
+                <type>java.lang.Boolean</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetFileType</name>
+            <comment>Gets the filetype of Fname.
+ 
+ Returns file type as a String on success or Unknown on failure.
+  Returns standard mime types such as:
+   
+  text/plain
+  audio/mpeg
+  text/XML
+  image/jpeg
+  
+  as file types</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>Fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>cp</name>
+            <comment>Copy a file from Src to Dest
+ 
+ Returns True on success.
+ Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Src</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>Dest</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>Exists</name>
+            <comment>Checks to see if a file exists.
+ 
+ Filename is the path and filename string
+ 
+ Returns True on success</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Filename</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetFileExt</name>
+            <comment>Returns the file extension (if available) of the file FName
+ otherwise returns the entire path and filename sent</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>FName</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>extractZipFiles</name>
+            <comment>Unzips a backup zipfile to directory. 
+ Creates the destination DIR if needed.</comment>
+            <returntype>void</returntype>
+            <parameter>
+                <name>zip_file</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>directory</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>GetPerms</name>
+            <comment>Example:
+ perms = GetPerms(filename)
+ 
+ Returns a Linux style permission string "rwxrwxrwx" rwx for each of owner, group, and others.
+ Use  - for no permission, like "rw-r--r--" for owner read write, group read, and others read.
+ Works with files or directories.</comment>
+            <returntype>java.lang.String</returntype>
+            <parameter>
+                <name>fname</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <method>
+            <name>chmod</name>
+            <comment>Sets file permissions for a file or directory. Requires correct user access or root. 
+ Permissions are as Linux chmod numeric value.
+ 
+  1 = execute
+  2 = write
+  4 = read
+  
+  644 = owner read/write (4 + 2), group read, other read
+  755 = owner read/write/execute (4 + 2 + 1), group read/execute, other read,execute
+  
+  Uses Root if available.</comment>
+            <returntype>boolean</returntype>
+            <parameter>
+                <name>Filename</name>
+                <type>java.lang.String</type>
+            </parameter>
+            <parameter>
+                <name>permissions</name>
+                <type>java.lang.String</type>
+            </parameter>
+        </method>
+        <field>
+            <name>ErrStr</name>
+            <comment>The StdErr interface used by most commands. This should
+ contain any error message from the OS.</comment>
+            <returntype>java.lang.String</returntype>
+        </field>
+        <field>
+            <name>HaveRoot</name>
+            <comment>True if GetRoot succeeds.</comment>
+            <returntype>boolean</returntype>
+        </field>
+        <field>
+            <name>FSerror</name>
+            <comment>The value of stderror is set to this string after each call
+ if it is empty, there was no error.</comment>
+            <returntype>java.lang.String</returntype>
+        </field>
+        <field>
+            <name>OutStr</name>
+            <comment>The StdOut interface returned by some commands. This
+ will contain what would normally be text output to a linux
+ terminal.</comment>
+            <returntype>java.lang.String</returntype>
+        </field>
+        <field>
+            <name>HaveTB</name>
+            <comment>True if toolbox is installed.</comment>
+            <returntype>boolean</returntype>
+        </field>
+        <field>
+            <name>fsStdOut</name>
+            <comment>Contains the Linux StdOut result of a command. This is
+ what you would see in a Linux console if the command
+ is successful.</comment>
+            <returntype>java.lang.String</returntype>
+        </field>
+        <field>
+            <name>HaveBB</name>
+            <comment>True if busybox is installed.</comment>
+            <returntype>boolean</returntype>
+        </field>
+    </class>
+    <version>1.5</version>
+    <author>Jem Miller - Missing Link Software</author>
+</root>
